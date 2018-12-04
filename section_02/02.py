@@ -21,3 +21,7 @@ Observable.from_marbles('---(a1)-(b2)------(c3)|', test_scheduler).subscribe(pri
 Observable.from_marbles('(a6)---(b5)(c4)|', test_scheduler).subscribe(print_value)
 
 test_scheduler.start() # start the scheduling
+
+test2_scheduler = TestScheduler()
+Observable.interval(10, test2_scheduler).take_until(Observable.timer(30)).subscribe(print_value)
+test2_scheduler.start()
