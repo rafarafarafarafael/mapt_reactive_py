@@ -25,3 +25,14 @@ test_scheduler.start() # start the scheduling
 test2_scheduler = TestScheduler()
 Observable.interval(10, test2_scheduler).take_until(Observable.timer(30)).subscribe(print_value)
 test2_scheduler.start()
+
+print('---Buffer---')
+Observable.from_(range(2000)).buffer(Observable.interval(10)).subscribe(lambda buffer: print(f'{len(buffer)} items in buffer.'))
+
+print('---Buffer with count---')
+Observable.from_(range(10)).buffer_with_count(3).subscribe(print_value)
+
+print('---Buffer with time---')
+test3_scheduler = TestScheduler()
+Observable.interval(100, test3_scheduler).take_until(Observable.timer(30)).buffer_with_time(20).subscribe(print_value)
+test3_scheduler.start()
