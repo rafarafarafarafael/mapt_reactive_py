@@ -11,3 +11,6 @@ def say_hello(name, callback):
 hello = Observable.from_callback(say_hello) # a factory function to create new observables
 hello('Rafael').subscribe(print_value) # actually creates an observable
 hello('observable').subscribe(print_value) # and then this also creates an observable
+
+Observable.from_list([1, 2, 3]).subscribe(print_value)
+Observable.of(1, 2, 3, 'A', 'B', 'C').subscribe(print_value)
